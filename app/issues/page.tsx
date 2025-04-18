@@ -40,4 +40,7 @@ const IssuesPage = async () => {
     )
 }
 
+// export const revalidate = 0 // the same as setting dynamic to forcr dynamic, the output of this page has to be revalidate every 0 seconds
+export const dynamic = 'force-dynamic';
+
 export default IssuesPage
