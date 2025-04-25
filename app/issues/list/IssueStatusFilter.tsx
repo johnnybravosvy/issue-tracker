@@ -15,11 +15,13 @@ const IssueStatusFilter = () => {
     <Select.Root>
       <Select.Trigger placeholder="Filter by status" />
       <Select.Content>
-        {statuses.map((status) => (
-          <Select.Item key={status.value} value={status.value || ""}>
-            {status.label}
-          </Select.Item>
-        ))}
+        {statuses
+          .filter((status) => status.value)
+          .map((status) => (
+            <Select.Item key={status.value} value={status.value || ""}>
+              {status.label}
+            </Select.Item>
+          ))}
       </Select.Content>
     </Select.Root>
   );
