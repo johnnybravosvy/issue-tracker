@@ -1,3 +1,4 @@
+'use client";';
 import { IssueStatusBadge } from "@/app/components";
 import { Issue, Status } from "@prisma/client";
 import { ArrowUpIcon } from "@radix-ui/react-icons";
@@ -18,6 +19,13 @@ interface Props {
 }
 
 const IssueTable = ({ searchParams, issues }: Props) => {
+  const createQuery = (orderBy: keyof Issue) => {
+    return {
+      ...(searchParams.status && { status: searchParams.status }),
+      ...(searchParams.page && { page: searchParams.page }),
+      orderBy,
+    };
+  };
   return (
     <Table.Root variant="surface">
       <Table.Header>
@@ -29,7 +37,7 @@ const IssueTable = ({ searchParams, issues }: Props) => {
             >
               <NextLink
                 href={{
-                  query: { ...searchParams, orderBy: column.value },
+                  query: createQuery(column.value),
                 }}
               >
                 {column.label}
